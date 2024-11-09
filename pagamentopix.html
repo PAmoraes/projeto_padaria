@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code - Realizar Pagamento</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #644832;
+            flex-direction: column;
+        }
+
+        .qr-code-container {
+            background-color: #f2e2be;
+            padding: 40px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+        }
+
+        .qr-code-container .title {
+            font-size: 22px;
+            color: #000;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .qr-code-display {
+            margin-bottom: 20px;
+        }
+
+        .qr-code-display .qr-code-image {
+            max-width: 60%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            width: 150px;
+            padding: 12px;
+            background-color: #8175d3;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            font-size: 17px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            background: #6a5acd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="qr-code-container">
+            <h3 class="title">QR Code para Realizar o Pagamento</h3>
+            <div class="qr-code-display">
+                <img src="./img/dc9baa65-f15c-4b7b-ade4-decd7c54ec0a.jpg" alt="QR Code para pagamento" class="qr-code-image">
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn" id="payment-done-button">Já realizei o pagamento</button>
+            <button class="btn" id="back-button">Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Gerencia o evento de clique no botão de "Já realizei o pagamento"
+            document.getElementById('payment-done-button').addEventListener('click', () => {
+                window.location.href = 'confirmation.html'; // Redireciona para a página de confirmação
+            });
+
+            // Gerencia o evento de clique no botão de "Voltar"
+            document.getElementById('back-button').addEventListener('click', () => {
+                window.location.href = 'principal.html'; // Redireciona para a página principal
+            });
+        });
+    </script>
+</body>
+
+</html>

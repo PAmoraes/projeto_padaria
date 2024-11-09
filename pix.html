@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento em Dinheiro</title>
+    <link rel="stylesheet" href="csscard.css"> <!-- Link para o CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <form id="payment-form" onsubmit="handlePayment(event)">
+            <div class="row">
+                <div class="column">
+                    <h3 class="title">Endereço de Entrega</h3>
+                    <div class="input-box">
+                        <span>Rua:</span>
+                        <input type="text" id="street" placeholder="Rua Imaginária" required>
+                    </div>
+                    <div class="input-box">
+                        <span>Número:</span>
+                        <input type="text" id="number" placeholder="123" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h3>Resumo do Pedido</h3>
+                <p>Total: R$<span id="order-total">0.00</span></p> <!-- O valor será alterado dinamicamente -->
+            </div>
+
+            <button type="submit" class="btn">Pagar</button>
+            <button type="button" class="btn" onclick="window.location.href='principal.html'">Voltar</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Recupera o valor total do pedido do local storage
+            const orderTotal = localStorage.getItem('totalPrice');
+            if (orderTotal) {
+                document.getElementById('order-total').textContent = orderTotal;
+            } else {
+                // Caso não haja valor no localStorage, definimos um valor padrão
+                document.getElementById('order-total').textContent = 'order-total';
+            }
+
+            // Gerencia o evento de submissão do formulário
+            document.getElementById('payment-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                
+                // Validação dos campos do formulário
+                const requiredFields = ['street', 'number'];
+                let isValid = true;
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value) {
+                        isValid = false;
+                        field.classList.add('invalid');
+                    } else {
+                        field.classList.remove('invalid');
+                    }
+                });
+                
+                if (isValid) {
+                    localStorage.removeItem('totalPrice'); // Limpa o valor total do Local Storage
+                    window.location.href = 'pagamentopix.html';
+                } else {
+                    alert('Por favor, preencha todos os campos.');
+                }
+            });
+
+            // Gerencia o evento de clique no botão de voltar
+            document.getElementById('back-button').addEventListener('click', () => {
+                window.location.href = 'principal.html';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
